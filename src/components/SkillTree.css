@@ -1,0 +1,169 @@
+/* Recursive Skill Tree CSS - Vertical Layout */
+
+.skill-tree-container {
+    display: block;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.tree-root-wrapper {
+    display: block;
+}
+
+/* -------------------------------------------
+   CONTAINER FOR CHILDREN
+------------------------------------------- */
+.tree-children {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+    margin-left: 2rem;
+    /* Indent children */
+    position: relative;
+}
+
+/* The main vertical line on the left for children */
+.tree-children::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background-color: var(--accent-color);
+}
+
+/* -------------------------------------------
+   NODE WRAPPER AND CONNECTORS
+------------------------------------------- */
+.tree-node-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Left align */
+    padding: 1.5rem 0 0 2rem;
+    /* Space from left line and row spacing */
+    width: 100%;
+    position: relative;
+}
+
+/* Horizontal Connector (Left line from vertical bus to node) */
+.tree-node-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 2.7rem;
+    /* Align with center of node roughly (padding top 1.5 + node padding/height half) */
+    left: 0;
+    width: 2rem;
+    height: 2px;
+    background-color: var(--accent-color);
+}
+
+/* -------------------------------------------
+   NODE STYLING
+------------------------------------------- */
+.skill-node {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    border: 2px solid var(--accent-color);
+    text-align: left;
+    min-width: 200px;
+    /* Consistent width */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, background-color 0.2s;
+    position: relative;
+    z-index: 10;
+    width: fit-content;
+}
+
+.skill-node.clickable {
+    cursor: pointer;
+}
+
+.skill-node.clickable:hover {
+    transform: translateX(5px);
+    background-color: #2a2a2a;
+}
+
+.node-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.toggle-icon {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    line-height: 1;
+}
+
+.node-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.node-desc {
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    opacity: 0.8;
+    color: var(--text-secondary);
+}
+
+.tree-node-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* -------------------------------------------
+   ROOT SPECIFICS
+------------------------------------------- */
+/* Root node shouldn't have the connector line to the left */
+.tree-root-wrapper>.tree-node-wrapper {
+    padding-left: 0;
+    padding-top: 0;
+}
+
+.tree-root-wrapper>.tree-node-wrapper::before {
+    display: none;
+}
+
+/* Root's children container adjustment */
+.tree-root-wrapper>.tree-node-wrapper>.tree-children {
+    margin-left: 1rem;
+    /* Slightly less indent for root children if desired, but 2rem is fine */
+    border-left: 2px solid var(--accent-color);
+}
+
+/* -------------------------------------------
+   MOBILE ADJUSTMENTS
+------------------------------------------- */
+@media (max-width: 768px) {
+    .skill-tree-container {
+        padding: 1rem;
+    }
+
+    .tree-children {
+        margin-left: 1rem;
+    }
+
+    .tree-node-wrapper {
+        padding-left: 1.5rem;
+    }
+
+    .tree-node-wrapper::before {
+        width: 1.5rem;
+    }
+
+    .skill-node {
+        width: 100%;
+        /* Full width on mobile */
+        min-width: unset;
+    }
+}
