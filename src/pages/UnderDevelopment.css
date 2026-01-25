@@ -1,0 +1,41 @@
+.under-development-page {
+    animation: fadeIn 0.5s ease-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+}
+
+.under-development-container {
+    max-width: 600px;
+    background-color: var(--bg-secondary);
+    padding: 3rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.under-development-container h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-color);
+}
+
+.under-development-message {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    font-style: italic;
+    opacity: 0.8;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

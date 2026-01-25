@@ -166,3 +166,39 @@
         padding: 1.5rem;
     }
 }
+
+/* Accordion Styles */
+.accordion-header {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.accordion-header:hover {
+    color: var(--accent-color);
+}
+
+.accordion-icon {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.accordion-header.expanded .accordion-icon {
+    transform: rotate(180deg);
+}
+
+.nav-group-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease-out, opacity 0.2s ease-out;
+}
+
+.nav-group-content.expanded {
+    max-height: 500px;
+    /* Arbitrary large height sufficient for content */
+    opacity: 1;
+    transition: max-height 0.5s ease-in, opacity 0.3s ease-in;
+}

@@ -3,7 +3,12 @@ import { NavLink } from 'react-router-dom';
 import './Layout.css';
 
 const Layout = ({ children }) => {
+    const [expandedSection, setExpandedSection] = useState('Getting Started');
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    const toggleSection = (sectionName) => {
+        setExpandedSection(prev => prev === sectionName ? null : sectionName);
+    };
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -37,46 +42,117 @@ const Layout = ({ children }) => {
                     <button className="close-sidebar-btn" onClick={closeMobileMenu} aria-label="Close Menu">&times;</button>
                 </div>
 
-                <nav className="nav-group">
-                    <h3>Getting Started</h3>
-                    <NavLink
-                        to="/"
-                        className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
-                        onClick={closeMobileMenu}
-                        end
-                    >
-                        Home
-                    </NavLink>
-                    <NavLink
-                        to="/about"
-                        className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
-                        onClick={closeMobileMenu}
-                    >
-                        About ArtWiki
-                    </NavLink>
-                    <NavLink
-                        to="/roadmap"
-                        className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
-                        onClick={closeMobileMenu}
-                    >
-                        Art Roadmap
-                    </NavLink>
-                </nav>
+                <div className="nav-group">
+                    <h3 onClick={() => toggleSection('Getting Started')} className={`accordion-header ${expandedSection === 'Getting Started' ? 'expanded' : ''}`}>
+                        Getting Started
+                        <span className="accordion-icon">v</span>
+                    </h3>
+                    <div className={`nav-group-content ${expandedSection === 'Getting Started' ? 'expanded' : ''}`}>
+                        <NavLink
+                            to="/"
+                            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+                            onClick={closeMobileMenu}
+                            end
+                        >
+                            Home
+                        </NavLink>
+                        <NavLink
+                            to="/about"
+                            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+                            onClick={closeMobileMenu}
+                        >
+                            About ArtWiki
+                        </NavLink>
+                        <NavLink
+                            to="/roadmap"
+                            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+                            onClick={closeMobileMenu}
+                        >
+                            Art Roadmap
+                        </NavLink>
+                    </div>
+                </div>
 
-                <nav className="nav-group">
-                    <h3>Fundamentals</h3>
-                    <a href="#" className="nav-link" onClick={closeMobileMenu}>Perspective</a>
-                    <a href="#" className="nav-link" onClick={closeMobileMenu}>Color Theory</a>
-                    <a href="#" className="nav-link" onClick={closeMobileMenu}>Anatomy 101</a>
-                    <a href="#" className="nav-link" onClick={closeMobileMenu}>Composition</a>
-                </nav>
+                <div className="nav-group">
+                    <h3 onClick={() => toggleSection('Fundamentals')} className={`accordion-header ${expandedSection === 'Fundamentals' ? 'expanded' : ''}`}>
+                        Fundamentals
+                        <span className="accordion-icon">v</span>
+                    </h3>
+                    <div className={`nav-group-content ${expandedSection === 'Fundamentals' ? 'expanded' : ''}`}>
+                        <NavLink
+                            to="/gesture"
+                            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+                            onClick={closeMobileMenu}
+                        >
+                            Gesture
+                        </NavLink>
+                        <NavLink
+                            to="/values"
+                            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+                            onClick={closeMobileMenu}
+                        >
+                            Values
+                        </NavLink>
+                        <NavLink
+                            to="/perspective"
+                            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+                            onClick={closeMobileMenu}
+                        >
+                            Perspective
+                        </NavLink>
+                        <NavLink
+                            to="/color-theory"
+                            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+                            onClick={closeMobileMenu}
+                        >
+                            Color Theory
+                        </NavLink>
+                        <NavLink
+                            to="/anatomy"
+                            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+                            onClick={closeMobileMenu}
+                        >
+                            Anatomy 101
+                        </NavLink>
+                        <NavLink
+                            to="/composition"
+                            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+                            onClick={closeMobileMenu}
+                        >
+                            Composition
+                        </NavLink>
+                    </div>
+                </div>
 
-                <nav className="nav-group">
-                    <h3>Mediums</h3>
-                    <a href="#" className="nav-link" onClick={closeMobileMenu}>Digital Painting</a>
-                    <a href="#" className="nav-link" onClick={closeMobileMenu}>Traditional Pencil</a>
-                    <a href="#" className="nav-link" onClick={closeMobileMenu}>Oil & Acrylics</a>
-                </nav>
+                <div className="nav-group">
+                    <h3 onClick={() => toggleSection('Mediums')} className={`accordion-header ${expandedSection === 'Mediums' ? 'expanded' : ''}`}>
+                        Mediums
+                        <span className="accordion-icon">v</span>
+                    </h3>
+                    <div className={`nav-group-content ${expandedSection === 'Mediums' ? 'expanded' : ''}`}>
+                        <NavLink
+                            to="/digital-painting"
+                            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+                            onClick={closeMobileMenu}
+                        >
+                            Digital Painting
+                        </NavLink>
+                        <NavLink
+                            to="/traditional-pencil"
+                            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+                            onClick={closeMobileMenu}
+                        >
+                            Traditional Pencil
+                        </NavLink>
+                        <NavLink
+                            to="/oil-acrylics"
+                            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+                            onClick={closeMobileMenu}
+                        >
+                            Oil & Acrylics
+                        </NavLink>
+                    </div>
+                </div>
             </aside>
 
             <main className="main-content">

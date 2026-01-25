@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './SkillTree.css';
 
 const roadmapData = {
@@ -8,11 +9,13 @@ const roadmapData = {
         {
             title: "Gesture",
             description: "Capture the flow",
+            link: "/gesture",
             children: []
         },
         {
             title: "Perspective",
             description: "3D Space",
+            link: "/perspective",
             children: [
                 {
                     title: "Terms",
@@ -39,16 +42,19 @@ const roadmapData = {
         {
             title: "Anatomy 101",
             description: "Basic Shapes",
+            link: "/anatomy",
             children: []
         },
         {
             title: "Values & Light",
             description: "Shadows & Form",
+            link: "/values",
             children: []
         },
         {
             title: "Composition",
             description: "Guiding the eye",
+            link: "/composition",
             children: []
         }
     ]
@@ -72,7 +78,15 @@ const TreeNode = ({ node, defaultOpen = false }) => {
                     onClick={toggleOpen}
                 >
                     <div className="node-header">
-                        <div className="node-title">{node.title}</div>
+                        <div className="node-title">
+                            {node.link ? (
+                                <Link to={node.link} onClick={(e) => e.stopPropagation()} className="node-link">
+                                    {node.title}
+                                </Link>
+                            ) : (
+                                node.title
+                            )}
+                        </div>
                         {hasChildren && (
                             <span className="toggle-icon">{isOpen ? '−' : '+'}</span>
                         )}
